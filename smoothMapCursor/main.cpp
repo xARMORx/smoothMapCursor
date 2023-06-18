@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string>
 
 LRESULT AsiPlugin::wndProc(const decltype(wndProcHook)& hook, HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	if (uMsg == WM_MOUSEWHEEL && *(char*)(0xBA68A5) == 5) {
