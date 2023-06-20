@@ -3,18 +3,16 @@
 
 #include <Windows.h>
 #include <memory>
-#include <kthook/kthook.hpp>
+#include <kthook/kthook.hpp>\
 
-using CTimer__UpdatePrototype = void(__cdecl*)();
-using wndProcPrototype = LRESULT(__stdcall*)(HWND, UINT, WPARAM, LPARAM);
+using CHud__DrawRadarPrototype = void(__cdecl*)();
 
 class AsiPlugin{
 public:
-	kthook::kthook_simple<CTimer__UpdatePrototype> CTimerHook{ 0x561B10 };
-	kthook::kthook_simple<wndProcPrototype> wndProcHook{ 0x747EB0 };
+	kthook::kthook_simple<CHud__DrawRadarPrototype> CHudHook{ 0x58A330 };
+	kthook::kthook_simple<WNDPROC> wndProcHook{};
 
-	void CTimer__Update(const decltype(CTimerHook)& hook);
-	LRESULT wndProc(const decltype(wndProcHook)& hook, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	void CHud__DrawRadar(const decltype(CHudHook)& hook);
 	explicit AsiPlugin();
 	virtual ~AsiPlugin();
 } AsiPlugin;
